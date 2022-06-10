@@ -5,5 +5,10 @@
   </head>
   <body>
     <h1>{{ greeting }}</h1>
+    {% if today %}
+      <h3>{{ today }}</h3>
+    {% else %}
+      <h3>Não informado a data.</h3>
+    {% endif %}
   </body>
 </html>
