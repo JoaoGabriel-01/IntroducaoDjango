@@ -4,11 +4,15 @@
     <title>Boas Vindas!</title>
   </head>
   <body>
-    <h1>{{ greeting }}</h1>
-    {% if today %}
+    <h1>Outra hora: {% now "j \d\e F Y H:i" %} --</h1>
+    {% if greeting and today %}
+      <h3>{{ greeting }} - {{ today }}</h3>
+    {% elif greeting and not today %}
+      <h3>{{ greeting }}</h3>
+    {% elif not greeting and today %}
       <h3>{{ today }}</h3>
     {% else %}
-      <h3>Não informado a data.</h3>
+      <h3>Não informado a data nem boas vindas.</h3>
     {% endif %}
   </body>
 </html>
