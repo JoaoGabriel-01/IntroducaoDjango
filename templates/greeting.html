@@ -4,9 +4,8 @@
     <title>Boas Vindas!</title>
   </head>
   <body>
-    <h1>Outra hora: {% now "j \d\e F Y H:i" %} --</h1>
     {% if greeting and today %}
-      <h3>{{ greeting }} - {{ today }}</h3>
+      <h3>{{ greeting }} - {{ today|date:'d/m/Y H:i:s' }}</h3>
     {% elif greeting and not today %}
       <h3>{{ greeting }}</h3>
     {% elif not greeting and today %}
