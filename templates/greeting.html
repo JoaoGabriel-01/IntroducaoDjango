@@ -4,6 +4,7 @@
     <title>Boas Vindas!</title>
   </head>
   <body>
+    {% include "presentation.html" %}
     {% if greeting and today %}
       <h3>{{ greeting }} - {{ today|date:'d/m/Y H:i:s' }}</h3>
     {% elif greeting and not today %}
@@ -14,7 +15,12 @@
       <h3>Não informado a data nem boas vindas.</h3>
     {% endif %}
     {% for week in week_days %}
-      <p>{{ week }}</p>
+<!--       <p>{{ forloop.counter0 }} - {{ week }}</p> -->
+      {% if forloop.counter0 == today.weekday %}
+        <p> <strong>{{ week }}</strong></p>
+      {% else %}
+        <p>{{ week }}</p>
+      {% endif %}
     {% empty %}
       <h3>Não existem informações</h3>
     {% endfor %}
