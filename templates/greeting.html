@@ -1,30 +1,22 @@
-<!DOCTYPE HTML>
-{% load static %}
-<html>
-  <head>
-    <title>Boas Vindas!</title>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-  </head>
-  <body>
-    {% include "presentation.html" %}
-    {% if greeting and today %}
-      <h3>{{ greeting }} - {{ today|date:'d/m/Y H:i:s' }}</h3>
-    {% elif greeting and not today %}
-      <h3>{{ greeting }}</h3>
-    {% elif not greeting and today %}
-      <h3>{{ today }}</h3>
-    {% else %}
-      <h3>Não informado a data nem boas vindas.</h3>
-    {% endif %}
-    {% for week in week_days %}
-<!--       <p>{{ forloop.counter0 }} - {{ week }}</p> -->
-      {% if forloop.counter0 == today.weekday %}
-        <p> <strong>{{ week }}</strong></p>
-      {% else %}
-        <p>{{ week }}</p>
-      {% endif %}
-    {% empty %}
-      <h3>Não existem informações</h3>
-    {% endfor %}
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} Curso de Django {% endblock %}
+
+{% block header %}
+  {% include "presentation.html" %}
+  {% if greeting %}
+    <p> {{ greeting }}</p>
+  {% endif %}
+{% endblock %}
+{% block time-info %}
+<div class="today">{{ today|date:'d/m/Y' }}</div>
+<div class="week">
+{% for week in week_days %}
+{% if forloop.counter0 == today.weekday %}
+<p class="week-today">{{ week }}</p>
+{% else %}
+<p>{{ week }}</p>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock %}
